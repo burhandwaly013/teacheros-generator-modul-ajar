@@ -644,12 +644,12 @@ export async function generateWordDocument(
     children.push(table([
       row([
         cellP([
-          para([txt("Mengetahui,", { size: 11 })], { alignment: AlignmentType.CENTER, spacing: { after: 50 } }),
-          para([txt(`${kepalaSekolahLabel},`, { bold: true, size: 11 })], { alignment: AlignmentType.CENTER }),
+          para([txt("Mengetahui,", { size: 11 })], { alignment: AlignmentType.CENTER, spacing: { after: 20, line: 240, lineRule: LineRuleType.AUTO } }),
+          para([txt(`${kepalaSekolahLabel},`, { bold: true, size: 11 })], { alignment: AlignmentType.CENTER, spacing: { after: 20, line: 240, lineRule: LineRuleType.AUTO } }),
         ], { width: 50 }),
         cellP([
-          para([txt(`${sig.tempat || "________________"}, ${sigTgl || "________________"}`, { size: 11 })], { alignment: AlignmentType.CENTER, spacing: { after: 50 } }),
-          para([txt(`Guru ${data.mapel || ""},`, { bold: true, size: 11 })], { alignment: AlignmentType.CENTER }),
+          para([txt(`${sig.tempat || "________________"}, ${sigTgl || "________________"}`, { size: 11 })], { alignment: AlignmentType.CENTER, spacing: { after: 20, line: 240, lineRule: LineRuleType.AUTO } }),
+          para([txt(`Guru ${data.mapel || ""},`, { bold: true, size: 11 })], { alignment: AlignmentType.CENTER, spacing: { after: 20, line: 240, lineRule: LineRuleType.AUTO } }),
         ], { width: 50 }),
       ]),
       row([
@@ -658,12 +658,12 @@ export async function generateWordDocument(
       ]),
       row([
         cellP([
-          para([txt(sig.kepalaName || "________________________", { bold: true, size: 11 })], { alignment: AlignmentType.CENTER, spacing: { after: 30 } }),
-          para([txt(`NIP. ${sig.kepalaNip || "________________________"}`, { size: 11 })], { alignment: AlignmentType.CENTER }),
+          para([txt(sig.kepalaName || "________________________", { bold: true, size: 11 })], { alignment: AlignmentType.CENTER, spacing: { after: 20, line: 240, lineRule: LineRuleType.AUTO } }),
+          para([txt(`NIP. ${sig.kepalaNip || "________________________"}`, { size: 11 })], { alignment: AlignmentType.CENTER, spacing: { after: 0, line: 240, lineRule: LineRuleType.AUTO } }),
         ]),
         cellP([
-          para([txt(sig.guruName || "________________________", { bold: true, size: 11 })], { alignment: AlignmentType.CENTER, spacing: { after: 30 } }),
-          para([txt(`NIP. ${sig.guruNip || "________________________"}`, { size: 11 })], { alignment: AlignmentType.CENTER }),
+          para([txt(sig.guruName || "________________________", { bold: true, size: 11 })], { alignment: AlignmentType.CENTER, spacing: { after: 20, line: 240, lineRule: LineRuleType.AUTO } }),
+          para([txt(`NIP. ${sig.guruNip || "________________________"}`, { size: 11 })], { alignment: AlignmentType.CENTER, spacing: { after: 0, line: 240, lineRule: LineRuleType.AUTO } }),
         ]),
       ]),
     ]));
