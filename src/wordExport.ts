@@ -27,12 +27,18 @@ import type { MCQ } from "./mcqGenerator";
 import { parseTime, distributeTime, buildPertemuan, buildRubrik } from "./helpers";
 import { DEFAULT_DOCUMENT_SETTINGS, getEffectiveMarginCm, getPageDimensionsMm } from "./documentSettings";
 import type { DocumentSettings } from "./documentSettings";
-
+import { getThemeColors, THEME_BY_JENJANG } from "./theme/themeColors";
+// Warna identitas (primary/primaryLight/secondary) aktif untuk pemanggilan
+// generateWordDocument() saat ini — diisi di awal fungsi berdasarkan
+// data.jenjang, memakai satu-satunya sumber warna: src/theme/themeColors.ts.
+// Mengikuti pola persis seperti `activeSettings` (Font/Ukuran Font) yang
+// sudah ada, supaya konsisten dan tidak perlu mengubah pemanggilan lain.
+let activeTheme = THEME_BY_JENJANG.SD;
 // Color definitions (without #)
 const COLORS = {
-  primary: "991B1B",
-  primaryLight: "FEF2F2",
-  secondary: "BE123C",
+  get primary() { return activeTheme.primary; },
+  get primaryLight() { return activeTheme.primaryLight; },
+  get secondary() { return activeTheme.secondary; },
   blue: "EFF6FF",
   yellow: "FFFBEB",
   green: "F0FDF4",
@@ -180,6 +186,7 @@ export async function generateWordDocument(
   settings: DocumentSettings = DEFAULT_DOCUMENT_SETTINGS
 ): Promise<void> {
   activeSettings = settings;
+  activeTheme = getThemeColors(data.jenjang as Parameters<typeof getThemeColors>[0]);
   try {
     const totalMenit = parseTime(data.waktu);
     const { awal, inti, penutup } = distributeTime(totalMenit);
