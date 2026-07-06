@@ -27,6 +27,7 @@ import {
   getPageDimensionsMm,
 } from "./documentSettings";
 import type { DocumentSettings } from "./documentSettings";
+import { getThemeColors } from "./theme/themeColors";
 
 export default function App() {
   const [form, setForm] = useState<FormData>(INIT_FORM);
@@ -214,6 +215,7 @@ export default function App() {
     const bodyPt = docSettings.fontSize;
     const smallPt = docSettings.fontSize - 1.5;
     const lh = docSettings.lineSpacing;
+    const theme = getThemeColors(output?.jenjang as Parameters<typeof getThemeColors>[0]);
 
     const styleTag = document.createElement("style");
     styleTag.id = "__print_style__";
@@ -236,15 +238,17 @@ export default function App() {
         #__print_area__ .text-xs { font-size:${smallPt}pt !important; line-height:${lh} !important; }
         #__print_area__ table { width:100%; border-collapse:collapse; font-size:${smallPt}pt; margin:6pt 0 10pt; }
         #__print_area__ th, #__print_area__ td { border:1px solid #777 !important; padding:5pt 7pt !important; text-align:left; vertical-align:top; }
-        #__print_area__ th { background:#f7e3e3 !important; font-weight:bold; }
+        #__print_area__ th { background:#${theme.primaryLight} !important; font-weight:bold; }
         #__print_area__ tr { page-break-inside:avoid; break-inside:avoid-page; }
         #__print_area__ thead { break-after:avoid-page !important; page-break-after:avoid !important; }
         #__print_area__ ul, #__print_area__ ol { margin:4pt 0 8pt 0 !important; padding-left:18pt !important; }
         #__print_area__ li { margin-bottom:3pt; }
-        #__print_area__ .bg-red-800 { background:#8b0000 !important; color:#fff !important; break-after:avoid-page !important; page-break-after:avoid !important; }
-        #__print_area__ .bg-rose-700 { background:#be123c !important; color:#fff !important; break-after:avoid-page !important; page-break-after:avoid !important; }
+        #__print_area__ .bg-red-800 { background:#${theme.primary} !important; color:#fff !important; break-after:avoid-page !important; page-break-after:avoid !important; }
+        #__print_area__ .bg-rose-700 { background:#${theme.secondary} !important; color:#fff !important; break-after:avoid-page !important; page-break-after:avoid !important; }
         #__print_area__ .border-red-100 { break-after:avoid-page !important; page-break-after:avoid !important; }
-        #__print_area__ .bg-red-50 { background:#fdf2f2 !important; }
+        #__print_area__ .bg-red-50 { background:#${theme.primaryLight} !important; }
+        #__print_area__ .text-red-700 { color:#${theme.primary} !important; }
+        #__print_area__ .text-red-800 { color:#${theme.primary} !important; }
         #__print_area__ .bg-blue-50 { background:#eff6ff !important; }
         #__print_area__ .bg-yellow-50 { background:#fffbeb !important; }
         #__print_area__ .bg-amber-50 { background:#fffbeb !important; }
@@ -253,7 +257,7 @@ export default function App() {
         #__print_area__ .bg-gray-50 { background:#f9fafb !important; }
         #__print_area__ .bg-green-600 { background:#16a34a !important; color:#fff !important; }
         #__print_area__ .text-white { color:#fff !important; }
-        #__print_area__ .border-2 { border:2pt solid #8b0000 !important; }
+        #__print_area__ .border-2 { border:2pt solid #${theme.primary} !important; }
         #__print_area__ .border-t-2 { border-top:2pt solid #ccc !important; break-inside:avoid-page !important; page-break-inside:avoid !important; }
         #__print_area__ .rounded-full { border-radius:999px !important; }
         #__print_area__ .grid { display:grid !important; }
