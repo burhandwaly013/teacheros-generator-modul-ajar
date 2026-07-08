@@ -1,4 +1,4 @@
-import Dashboard from "./dashboard-v2/Dashboard";
+import App from "./App";
 import LoginPage from "./auth/LoginPage";
 import { useAuth } from "./auth/useAuth";
 
@@ -10,7 +10,7 @@ export default function AppRoot() {
   }
 
   return (
-    <Dashboard
+    <App
       onLogout={logout}
     />
   );

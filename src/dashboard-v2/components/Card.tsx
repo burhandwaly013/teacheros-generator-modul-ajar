@@ -1,8 +1,6 @@
-import type { ReactNode } from "react";
-
 interface CardProps {
   title?: string;
-  children: ReactNode;
+  children: React.ReactNode;
   className?: string;
 }
 
@@ -14,17 +12,17 @@ export default function Card({
   return (
     <div
       className={`
-        bg-white
         rounded-3xl
-        shadow-lg
         border
         border-slate-200
+        bg-white
         p-8
+        shadow-lg
         ${className}
       `}
     >
       {title && (
-        <h2 className="text-xl font-bold text-slate-800 mb-6">
+        <h2 className="mb-6 text-2xl font-bold text-slate-900">
           {title}
         </h2>
       )}
