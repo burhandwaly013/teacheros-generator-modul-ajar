@@ -20,7 +20,7 @@
 // memunculkan lagi masalah preflight yang sama.
 
 const LOGIN_ENDPOINT =
-  "https://script.google.com/a/macros/guru.sd.belajar.id/s/AKfycbxJnUuWppKGQc11R_aI_ckVJg1sOYh-JmVSV9pXY5u1Qy96KYAFOHPAWecOxFpSM-c1/exec";
+  "https://script.google.com/macros/s/AKfycbwzlE2dYdyVw_Kc5AxK2FRu23w2xr_UvrO5psBondJesuLY_E3sfigFYE0r6qcGHIrM/exec";
 
 export interface LoginResponse {
   success: boolean;

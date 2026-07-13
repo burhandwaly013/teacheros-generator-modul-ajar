@@ -21,8 +21,9 @@ export default function LoginPage({
       if (!result.success) {
         setError("Email atau Password salah.");
       }
-      // Kalau success, komponen induk (AppRoot) yang akan menukar tampilan
-      // ke Generator Modul Ajar — tidak ada yang perlu dilakukan di sini.
+      // Kalau success, komponen induk (routing TeacherOS) yang akan
+      // menangani perpindahan ke Dashboard — tidak ada yang perlu
+      // dilakukan di sini.
     } catch (err) {
       setError(err instanceof Error ? err.message : "Terjadi kesalahan saat login.");
     } finally {
@@ -32,15 +33,15 @@ export default function LoginPage({
 
   return (
     <div
-      style={{ fontFamily: "'Inter',sans-serif" }}
-      className="min-h-screen bg-gray-50 flex items-center justify-center px-4"
+      
+      className="min-h-screen bg-gradient-to-br from-violet-50 via-indigo-50 to-blue-50 flex items-center justify-center px-4 py-10"
     >
       <div className="w-full max-w-sm">
-        <div className="bg-gradient-to-r from-red-800 to-rose-900 rounded-t-2xl px-6 py-8 text-center">
-          <div className="w-14 h-14 mx-auto mb-3 rounded-full bg-white/15 flex items-center justify-center">
+        <div className="bg-gradient-to-br from-violet-600 via-indigo-600 to-blue-600 rounded-t-3xl px-8 py-10 text-center shadow-xl shadow-violet-600/20">
+          <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-white/15 backdrop-blur-md flex items-center justify-center">
             <svg
-              width="30"
-              height="30"
+              width="32"
+              height="32"
               viewBox="0 0 24 24"
               fill="none"
               stroke="white"
@@ -48,48 +49,55 @@ export default function LoginPage({
               strokeLinecap="round"
               strokeLinejoin="round"
             >
-              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-              <line x1="9" y1="7" x2="15" y2="7" />
-              <line x1="9" y1="11" x2="15" y2="11" />
-              <line x1="9" y1="15" x2="13" y2="15" />
+              <path d="M12 3L2 8l10 5 10-5-10-5z" />
+              <path d="M6 10.5V16c0 1 2.5 3 6 3s6-2 6-3v-5.5" />
+              <path d="M22 8v6" />
             </svg>
           </div>
-          <p className="text-white/80 text-xs font-semibold tracking-wide uppercase">TeacherOS</p>
-          <h1 className="text-white font-bold text-lg mt-1">Generator Modul Ajar</h1>
+          <p className="text-white/75 text-xs font-bold tracking-wider uppercase mb-1">
+            Workspace Digital Guru Indonesia
+          </p>
+          <h1 className="text-white font-extrabold text-2xl tracking-tight">TeacherOS</h1>
+          <p className="text-white/70 text-xs font-medium mt-2 leading-relaxed">
+            Masuk untuk mengakses seluruh aplikasi TeacherOS
+          </p>
         </div>
 
         <form
           onSubmit={handleSubmit}
-          className="bg-white rounded-b-2xl shadow-lg border border-gray-100 px-6 py-6"
+          className="bg-white rounded-b-3xl shadow-xl shadow-slate-900/5 border border-slate-100 px-8 py-8"
         >
-          <div className="mb-4">
-            <label className="block text-xs font-semibold text-gray-700 mb-1">Email</label>
+          <div className="mb-5">
+            <label className="block text-xs font-bold text-slate-700 mb-1.5 tracking-wide">
+              Email
+            </label>
             <input
               type="email"
               required
               autoComplete="username"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300"
+              className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-300 focus:border-violet-400 transition-colors"
               placeholder="nama@sekolah.belajar.id"
             />
           </div>
-          <div className="mb-4">
-            <label className="block text-xs font-semibold text-gray-700 mb-1">Password</label>
+          <div className="mb-6">
+            <label className="block text-xs font-bold text-slate-700 mb-1.5 tracking-wide">
+              Password
+            </label>
             <input
               type="password"
               required
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300"
+              className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-300 focus:border-violet-400 transition-colors"
               placeholder="********"
             />
           </div>
 
           {error && (
-            <p className="text-red-600 text-xs font-medium mb-4 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+            <p className="text-red-600 text-xs font-semibold mb-5 bg-red-50 border border-red-200 rounded-xl px-4 py-2.5">
               {error}
             </p>
           )}
@@ -97,9 +105,9 @@ export default function LoginPage({
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-red-800 hover:bg-red-900 disabled:bg-red-400 text-white font-semibold text-sm py-2.5 rounded-lg transition"
+            className="w-full bg-violet-600 hover:bg-violet-700 disabled:bg-violet-300 text-white font-bold text-sm py-3 rounded-xl shadow-lg shadow-violet-600/20 transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]"
           >
-            {loading ? "Memproses..." : "LOGIN"}
+            {loading ? "Memproses..." : "Masuk ke TeacherOS"}
           </button>
         </form>
       </div>
